@@ -1,18 +1,15 @@
 #!/bin/env python3
 # -*- coding: utf-8 -*
 
-import urllib.request, list
+import urllib.request, list, settings
 from bs4 import BeautifulSoup
 
 
-user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'
-headers = {'User-Agent': user_agent}
-
 def convert(from_, to, amount = 1) :
     url = 'http://www.xe.com/currencyconverter/convert/?Amount=' + str(amount) + '&From=' + from_ + '&To=' + to
-    req = urllib.request.Request(url, headers = headers)
+    req = urllib.request.Request(url, headers = settings.headers)
 
-    with urllib.request.urlopen(url) as response:
+    with urllib.request.urlopen(req) as response:
         html = response.read()
 
     soup = BeautifulSoup(html, 'html.parser')

@@ -1,15 +1,12 @@
 #!/bin/env python3
 # -*- coding: utf-8 -*
 
-import urllib.request
+import urllib.request, settings
 from bs4 import BeautifulSoup
 import pickle
 import os.path
 
-user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'
-headers = {'User-Agent': user_agent}
 url = 'http://www.xe.com/currency/'
-data = ''
 
 def list_currencies():
     cache_file = '/tmp/currencies.pickle'
@@ -25,9 +22,9 @@ def list_currencies():
         return currencies
 
     # This part run only if the cache file has not been found
-    req = urllib.request.Request(url, headers = headers)
+    req = urllib.request.Request(url, headers = settings.headers)
 
-    with urllib.request.urlopen(url) as response:
+    with urllib.request.urlopen(req) as response:
         html = response.read()
 
     soup = BeautifulSoup(html, 'html.parser')
