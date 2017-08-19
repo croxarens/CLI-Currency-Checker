@@ -5,6 +5,11 @@ settings = {
     'currency' : {
         'default' : 'GBP',
         'favourite' : ['EUR','USD']
+    },
+
+    'tocheck' : {
+        'GBP' : ['EUR', 'USD'],
+        'EUR' : ['GBP', 'USD']
     }
 }
 

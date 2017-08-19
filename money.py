@@ -7,11 +7,14 @@ if __name__ == '__main__' :
     nargs = len(sys.argv)
 
     if ( nargs == 1 ) :
-        orig = settings.settings['currency']['default']
+        tocheck = settings.settings['tocheck']
 
-        for curr in settings.settings['currency']['favourite'] :
-            val = converter.convert(orig, curr)
-            print('1', orig, '=', val, curr)
+        for cFrom in tocheck :
+            for cTo in tocheck[ cFrom ] :
+                cc = converter.convert(cFrom, cTo)
+                print('1', cFrom, '=', cc, cTo)
+
+            print() # Print an empty line
 
         print('\nPass -h as agrument to see the help')
 
@@ -20,7 +23,7 @@ if __name__ == '__main__' :
             print('HELP') # TODO : Write help
         elif sys.argv[1] == 'list' :
             curr = list.list_currencies()
-            
+
             for k in curr:
                 print(k, '-', curr[k])
 

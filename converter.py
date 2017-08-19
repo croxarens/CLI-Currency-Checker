@@ -14,8 +14,3 @@ def convert(from_, to, amount = 1) :
 
     soup = BeautifulSoup(html, 'html.parser')
     return soup.find('span', class_='uccResultAmount').get_text()
-
-
-if __name__ == '__main__':
-    value = convert('USD', 'EUR', 500.54)
-    print('1 USD =', value, 'EUR')
